@@ -1,4 +1,4 @@
-module defeat-yourself
+module tg_bot_template
 
 go 1.18
 

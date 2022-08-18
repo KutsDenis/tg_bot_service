@@ -1,8 +1,8 @@
 package alert
 
 import (
-	"defeat-yourself/cmd/defeat_yourself/config"
-	"defeat-yourself/internal/messenger"
+	"tg_bot_template/cmd/main/config"
+	"tg_bot_template/internal/messenger"
 )
 
 type Sender interface {

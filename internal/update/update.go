@@ -1,9 +1,9 @@
 package update
 
 import (
-	"defeat-yourself/cmd/defeat_yourself/config"
-	"defeat-yourself/internal/commands"
 	botapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	"tg_bot_template/cmd/main/config"
+	"tg_bot_template/internal/commands"
 )
 
 type Updater interface {

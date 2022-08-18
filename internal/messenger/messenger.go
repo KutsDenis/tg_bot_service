@@ -1,9 +1,9 @@
 package messenger
 
 import (
-	"defeat-yourself/cmd/defeat_yourself/config"
 	botapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"log"
+	"tg_bot_template/cmd/main/config"
 )
 
 type Messenger interface {

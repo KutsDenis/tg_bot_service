@@ -1,8 +1,8 @@
 package commands
 
 import (
-	"defeat-yourself/internal/messenger"
 	botapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	"tg_bot_template/internal/messenger"
 )
 
 type Commander interface {

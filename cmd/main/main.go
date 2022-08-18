@@ -1,6 +1,6 @@
 package main
 
-import "defeat-yourself/internal/update"
+import "tg_bot_template/internal/update"
 
 func main() {
 	var u update.Updater
