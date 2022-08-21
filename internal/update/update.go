@@ -6,14 +6,7 @@ import (
 	"tg_bot_template/internal/commands"
 )
 
-type Updater interface {
-	Update()
-}
-
-type Update struct {
-}
-
-func (u Update) Update() {
+func Update() {
 	var init config.Initializer
 	var command commands.Commander
 
@@ -21,7 +14,7 @@ func (u Update) Update() {
 	command = commands.Command{}
 
 	bot := init.Init()
-	cmd := command.Command
+	callCMD := command.CallCommand
 
 	upd := botapi.NewUpdate(0)
 	upd.Timeout = 60
@@ -47,6 +40,12 @@ func (u Update) Update() {
 		}
 
 		// Команды
-		go cmd(update.Message.Command(), usr)
+		cmd := commands.Command{
+			CMD: update.Message.Command(),
+			Usr: usr,
+			Bot: bot,
+		}
+
+		go callCMD(cmd)
 	}
 }

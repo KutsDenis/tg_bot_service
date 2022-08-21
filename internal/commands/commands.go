@@ -6,20 +6,19 @@ import (
 )
 
 type Commander interface {
-	Command(cmd string, usr *botapi.User)
+	CallCommand(command Command)
 }
 
 type Command struct {
+	CMD string
+	Usr *botapi.User
+	Bot *botapi.BotAPI
 }
 
-func (c Command) Command(cmd string, usr *botapi.User) {
+func (Command) CallCommand(c Command) {
 	var text string
-	var msg messenger.Messenger
-	msg = messenger.Message{}
 
-	send := msg.Send
-
-	switch cmd {
+	switch c.CMD {
 	case "help":
 		text = "Что сюда написать?"
 	case "start":
@@ -29,6 +28,6 @@ func (c Command) Command(cmd string, usr *botapi.User) {
 	}
 
 	if text != "" {
-		send(usr.ID, text)
+		messenger.Send(c.Usr.ID, text, c.Bot)
 	}
 }
