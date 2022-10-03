@@ -1,25 +1,34 @@
 package alert
 
 import (
-	"tg_bot_template/cmd/main/config"
+	"tg_bot_template/internal/cfg"
 	"tg_bot_template/internal/messenger"
 )
 
 type Sender interface {
-	ToAdmin(text string)
+	ToAdmin()
+	ToGroup()
 }
 
-type Alert struct{}
+type Alert struct {
+	Text     string
+	Markdown bool
+}
 
-func (Alert) ToAdmin(text string) {
-	var msg messenger.Messenger
-	var conf config.Loader
+func (a Alert) ToAdmin() {
+	message := messenger.Message{
+		ID:       cfg.Get.Bot.Admin,
+		Text:     a.Text,
+		Markdown: a.Markdown,
+	}
+	go message.Send()
+}
 
-	msg = messenger.Message{}
-	conf = config.Config{}
-
-	send := msg.Send
-	admin := conf.Load().Admin
-
-	go send(admin, text)
+func (a Alert) ToGroup() {
+	message := messenger.Message{
+		ID:       cfg.Get.Bot.Group,
+		Text:     a.Text,
+		Markdown: a.Markdown,
+	}
+	go message.Send()
 }
